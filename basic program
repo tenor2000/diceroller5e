@@ -1,0 +1,31 @@
+#character roller for D&D 5e
+
+import random
+active = False
+final_stats = []
+
+def diceroll():
+    statlist = []
+    while len(statlist) < 6:
+        roll = []
+        for i in range(4):
+            roll.append(random.randint(1,6))
+        roll = sorted(roll)
+        del roll[0]
+        statlist.append(sum(roll))       
+    return statlist
+
+
+while active is True:
+    stats = diceroll()
+    print(f" STR: {stats[0]}\n CON: {stats[1]}\n DEX: {stats[2]}\n INT: {stats[3]}\n WIS: {stats[4]}\n CHR: {stats[5]}\n")
+    question = input("Would you like to keep these statistics? (y/n): ")
+    if question == 'y':
+        final_stats = stats
+        break
+    elif question == 'n':
+        print("Rerolling...")
+    else:
+        print("What?")
+
+print(final_stats)
